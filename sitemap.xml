@@ -9,7 +9,28 @@
   </url>
   
   <url>
+    <loc>http://zhouguoqionghai.life/tags/gitment/</loc>
+    <lastmod>2020-11-23T22:47:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://zhouguoqionghai.life/post/</loc>
+    <lastmod>2020-11-23T22:47:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhouguoqionghai.life/tags/</loc>
+    <lastmod>2020-11-23T22:47:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhouguoqionghai.life/tags/utterances/</loc>
     <lastmod>2020-11-23T22:47:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -45,13 +66,6 @@
   
   <url>
     <loc>http://zhouguoqionghai.life/categories/hugo/</loc>
-    <lastmod>2020-11-23T20:35:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://zhouguoqionghai.life/tags/</loc>
     <lastmod>2020-11-23T20:35:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
