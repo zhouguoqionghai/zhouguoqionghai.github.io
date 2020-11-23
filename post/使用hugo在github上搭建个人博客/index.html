@@ -49,7 +49,7 @@
 <meta itemprop="description" content="">
 <meta itemprop="datePublished" content="2020-11-23T20:35:51+08:00" />
 <meta itemprop="dateModified" content="2020-11-23T20:35:51+08:00" />
-<meta itemprop="wordCount" content="769">
+<meta itemprop="wordCount" content="869">
 
 
 
@@ -133,7 +133,7 @@
 
     
     <div class="post-content">
-      <h3 id="前期准备">前期准备</h3>
+      <h2 id="前期准备">前期准备</h2>
 <ol>
 <li>
 <p>下载 <a href="https://github.com/gohugoio/hugo">hugo</a>，并且将 hugo 可执行文件加入到环境变量。</p>
@@ -162,7 +162,7 @@ git clone https://github.com/olOwOlo/hugo-theme-even themes/even
 <p>主题目录下的结构与根目录下的结构基本一致，可以直接复制主题目录下的配置文件覆盖根目录下的配置。复制<strong>even</strong> 主题目录下的两个配置 <code>theme.toml</code>，<code>archetypes/default.md</code> 到根目录下的对应位置。</p>
 </li>
 </ol>
-<h3 id="适配和发布文章">适配和发布文章</h3>
+<h2 id="适配和发布文章">适配和发布文章</h2>
 <p>针对自己的喜好对两个配置文件进行修改。<code>theme.toml</code> 用来控制主题，菜单等；<code>default.md</code> 是生成每篇文章的 .md 文件的模板。</p>
 <p>在项目根目录下，创建博客 markdown 文件。markdown 文件将自动创建在 <code>content</code> 目录下。</p>
 <div class="highlight"><div class="chroma">
@@ -195,7 +195,7 @@ Press Ctrl+C to stop</p>
 <pre class="chroma"><code class="language-bash" data-lang="bash">hugo
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="hugo-的打包流程">hugo 的打包流程</h4>
+</div><h3 id="hugo-的打包流程">hugo 的打包流程</h3>
 <blockquote>
 <ol>
 <li>拷贝静态资源到public文件夹，包括：拷贝 <code>theme/static/*</code> 到 <code>public/</code>下；拷贝 <code>static/*</code> 到 <code>public/</code>下</li>
@@ -212,6 +212,20 @@ Press Ctrl+C to stop</p>
 <p><img src="/hugo/custom_domain.jpg" alt="repository"></p>
 <p>我这里使用的是阿里云的域名，添加一条 CNAME 解析即可。</p>
 <p><img src="/hugo/%E9%98%BF%E9%87%8C%E4%BA%91.jpg" alt="repository"></p>
+<h3 id="推送到github">推送到github</h3>
+<p>将 public 目录下的内容推送到 github。注意仅仅是 public 目录，所以只需在 public 目录下创建本地仓库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cd public
+git remote add origin git@github.com:zhouguoqionghai/zhouguoqionghai.github.io.git
+</code></pre></td></tr></table>
+</div>
+</div><p>有个细节需要留心，如果推出到 github 上的是 main 分支，需要在设置里，将 <code>github pages</code> 设置为 <code>master</code> 分支。</p>
+<p><img src="/hugo/branches.jpg" alt="repository"></p>
     </div>
 
     
