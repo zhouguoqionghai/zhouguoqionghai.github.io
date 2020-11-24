@@ -35,7 +35,7 @@
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,11 +49,11 @@
 <meta itemprop="description" content="">
 <meta itemprop="datePublished" content="2020-11-23T20:35:51+08:00" />
 <meta itemprop="dateModified" content="2020-11-23T20:35:51+08:00" />
-<meta itemprop="wordCount" content="869">
+<meta itemprop="wordCount" content="994">
 
 
 
-<meta itemprop="keywords" content="github pages," />
+<meta itemprop="keywords" content="github pages,typora-root-url," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用hugo在github上搭建个人博客"/>
 <meta name="twitter:description" content=""/>
@@ -204,14 +204,16 @@ Press Ctrl+C to stop</p>
 </ol>
 </blockquote>
 <p>所以，最终只需要将 public 下的内容推送 github 上即可。</p>
+<p><strong>插入本地图片涉及相对路径。<strong>因为 hugo 里引用的图片的起始目录是 static 目录，但是我使用的 Typora 来编写 markdown 缺省起始目录是当前文档所在的路径。造成按 static 起始路径来相对引用，在 Typora 里无法正常显示。 可在文档注释里加上</strong><code>typora-root-url: ../../static</code></strong> ，操作上，在 <code>default.md</code> 模板里加上即可。</p>
+<p><img src="/pic/hugo/typora_root.png" alt="typora 根路径"></p>
 <p>在 github 上创建仓库。仓库名最好是  Owner.github.io 的形式，否则会多一层域名。</p>
-<p><img src="/hugo/repository.jpg" alt="repository"></p>
+<p><img src="/pic/hugo/repository.jpg" alt="repository"></p>
 <p>github 上的博客需要接祖 gitpages 功能，在仓库的设置里，可以先选一个默认的主题。这样会在仓库里创建 2 个初始文件。保存之后，就可以通过 <a href="https://zhouguoqionghai.github.io">https://zhouguoqionghai.github.io</a> 来访问博客了。</p>
-<p><img src="/hugo/publish.jpg" alt="repository"></p>
+<p><img src="/pic/hugo/publish.jpg" alt="publish"></p>
 <p>如果拥有自己的域名，这里可以加上自己的域名，能够使用自己的域名来访问了。</p>
-<p><img src="/hugo/custom_domain.jpg" alt="repository"></p>
+<p><img src="/pic/hugo/custom_domain.jpg" alt="custom_domain"></p>
 <p>我这里使用的是阿里云的域名，添加一条 CNAME 解析即可。</p>
-<p><img src="/hugo/%E9%98%BF%E9%87%8C%E4%BA%91.jpg" alt="repository"></p>
+<p><img src="/pic/hugo/%E9%98%BF%E9%87%8C%E4%BA%91.jpg" alt="ali_cloud"></p>
 <h3 id="推送到github">推送到github</h3>
 <p>将 public 目录下的内容推送到 github。注意仅仅是 public 目录，所以只需在 public 目录下创建本地仓库。</p>
 <div class="highlight"><div class="chroma">
@@ -225,7 +227,7 @@ git remote add origin git@github.com:zhouguoqionghai/zhouguoqionghai.github.io.g
 </code></pre></td></tr></table>
 </div>
 </div><p>有个细节需要留心，如果推出到 github 上的是 main 分支，需要在设置里，将 <code>github pages</code> 设置为 <code>master</code> 分支。</p>
-<p><img src="/hugo/branches.jpg" alt="repository"></p>
+<p><img src="/pic/hugo/branches.jpg" alt="branches"></p>
     </div>
 
     
@@ -246,6 +248,7 @@ git remote add origin git@github.com:zhouguoqionghai/zhouguoqionghai.github.io.g
 </div><footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/github-pages/">github pages</a>
+          <a href="/tags/typora-root-url/">typora-root-url</a>
           </div>
       <nav class="post-nav">
         <a class="prev" href="/post/%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">

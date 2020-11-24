@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>typora-root-url on coding monster</title>
+    <link>http://zhouguoqionghai.life/tags/typora-root-url/</link>
+    <description>Recent content in typora-root-url on coding monster</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 23 Nov 2020 20:35:51 +0800</lastBuildDate><atom:link href="http://zhouguoqionghai.life/tags/typora-root-url/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用hugo在github上搭建个人博客</title>
+      <link>http://zhouguoqionghai.life/post/%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Mon, 23 Nov 2020 20:35:51 +0800</pubDate>
+      
+      <guid>http://zhouguoqionghai.life/post/%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

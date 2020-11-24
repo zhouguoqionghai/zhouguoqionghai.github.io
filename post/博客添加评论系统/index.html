@@ -35,7 +35,7 @@
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,7 +49,7 @@
 <meta itemprop="description" content="">
 <meta itemprop="datePublished" content="2020-11-23T22:47:03+08:00" />
 <meta itemprop="dateModified" content="2020-11-23T22:47:03+08:00" />
-<meta itemprop="wordCount" content="128">
+<meta itemprop="wordCount" content="202">
 
 
 
@@ -135,9 +135,17 @@
 <p>目前 Even 主题支持的评论系统包括：gitment, utterances, gitalk 以及 valine。这四个里面除了 valine 之外都是基于 GitHub Issues 搭建的。</p>
 </blockquote>
 <p>even 主题集成了 <a href="https://github.com/apps/utterances">utterances</a> 评论系统，下载安装即可。安装完毕在 <strong>账户 &ndash;&gt; settings &ndash;&gt; Applications</strong> 能够找到。</p>
-<p><img src="/hugo/utterances.jpg" alt="repository"></p>
+<p><img src="/pic/hugo/utterances.jpg" alt="repository"></p>
 <p>新建一个公共仓库，专门用来保存评论。将 <code>utterances</code> 配置只能访问该公共仓库。</p>
-<p><img src="/hugo/spec_repository.jpg" alt="repository"></p>
+<p><img src="/pic/hugo/spec_repository.jpg" alt="repository"></p>
+<p>在配置文件<code>config.toml</code> 加上使用 <code>utterances</code> 作为评论系统的配置。</p>
+<blockquote>
+<p>[params.utterances]       # <a href="https://utteranc.es/">https://utteranc.es/</a>
+owner = &ldquo;zhouguoqionghai&rdquo;              # Your GitHub ID
+repo = &ldquo;blog-comments&rdquo;               # The repo to store comments</p>
+</blockquote>
+<p>发布之后，热心网友登录 github 账号之后，就能进行评论。</p>
+<p><img src="/pic/hugo/comment/sign_in_comment.jpg" alt="repository"></p>
     </div>
 
     
