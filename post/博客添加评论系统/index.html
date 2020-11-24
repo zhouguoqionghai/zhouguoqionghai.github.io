@@ -49,7 +49,7 @@
 <meta itemprop="description" content="">
 <meta itemprop="datePublished" content="2020-11-23T22:47:03+08:00" />
 <meta itemprop="dateModified" content="2020-11-23T22:47:03+08:00" />
-<meta itemprop="wordCount" content="349">
+<meta itemprop="wordCount" content="587">
 
 
 
@@ -155,7 +155,18 @@ repo = &ldquo;blog-comments&rdquo;               # The repo to store comments</p
 <p>在 config.toml 中配置启用 gitment 作为评论系统。</p>
 <p><img src="/pic/hugo/comment/gitment.png" alt="repository"></p>
 <p>在本地启动预览，使用 gitment 的评论系统会提示 <strong>Error: Comments Not Initialized</strong>.</p>
-<p><img src="/pic/hugo/comment/error.png" alt="repository"></p>
+<p><img src="/pic/hugo/comment/error.png" alt="error"></p>
+<p>推送到 github 上，热心网友授权之后，便能正常的评论。</p>
+<p><img src="/pic/hugo/comment/gitment_auth_yes.png" alt="authentication"></p>
+<p>根据这里的提示，创建的 OAuth Apps 需要访问对方的公共仓库的权限，才能进行评论博客。</p>
+<h1 id="utterances-和-gitment-对比">utterances 和 gitment 对比</h1>
+<ol>
+<li>gitment 需要自己手动去点击文章末尾的初始化评论。相当于创建一个issue，这样其他github用户才能评论。否则，即使其他用户登陆了账号，也会显示评论未初始化的问题。</li>
+<li>gitment 还有要求的权限过高带来的安全性问题。</li>
+</ol>
+<p>如此看来，还是优先使用 utterances.当然 github 上有同行开发的一键初始化所有评论的脚本。</p>
+<p>最后，来看看用来保存评论的仓库，Issues 处的变动如下。</p>
+<p><img src="/pic/hugo/comment/compare.png" alt="compare"></p>
     </div>
 
     
