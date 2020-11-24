@@ -49,7 +49,7 @@
 <meta itemprop="description" content="">
 <meta itemprop="datePublished" content="2020-11-23T20:35:51+08:00" />
 <meta itemprop="dateModified" content="2020-11-23T20:35:51+08:00" />
-<meta itemprop="wordCount" content="994">
+<meta itemprop="wordCount" content="1070">
 
 
 
@@ -212,6 +212,7 @@ Press Ctrl+C to stop</p>
 <p><img src="/pic/hugo/publish.jpg" alt="publish"></p>
 <p>如果拥有自己的域名，这里可以加上自己的域名，能够使用自己的域名来访问了。</p>
 <p><img src="/pic/hugo/custom_domain.jpg" alt="custom_domain"></p>
+<p>添加自定义的域名，会自动为仓库添加 <strong><code>CNAME</code></strong> 文件，文件的内容就是自定义的域名。之后 <code>git pull</code> 到本地之后，需要确保public 路径下一直有这个文件，才能保证正常的解析。</p>
 <p>我这里使用的是阿里云的域名，添加一条 CNAME 解析即可。</p>
 <p><img src="/pic/hugo/%E9%98%BF%E9%87%8C%E4%BA%91.jpg" alt="ali_cloud"></p>
 <h3 id="推送到github">推送到github</h3>
@@ -261,19 +262,29 @@ git remote add origin git@github.com:zhouguoqionghai/zhouguoqionghai.github.io.g
     </footer>
   </article>
         </div>
-        
-
-  
-
-  
-    <script src="https://utteranc.es/client.js"
-            repo="zhouguoqionghai/blog-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2020-11-23 20:35:51 \u002b0800 CST',
+        title: '使用hugo在github上搭建个人博客',
+        link: decodeURI(location.href),
+        desc: '',
+        owner: 'zhouguoqionghai',
+        repo: 'blog-comments',
+        oauth: {
+          client_id: 'e15fa37ab877e1513599',
+          client_secret: '7ba7adeb7503e227a1462117871c6e57d32db619'
+        }
+      });
+      gitment.render('comments-gitment');
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>

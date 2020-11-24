@@ -49,7 +49,7 @@
 <meta itemprop="description" content="">
 <meta itemprop="datePublished" content="2020-11-23T22:47:03+08:00" />
 <meta itemprop="dateModified" content="2020-11-23T22:47:03+08:00" />
-<meta itemprop="wordCount" content="202">
+<meta itemprop="wordCount" content="349">
 
 
 
@@ -145,7 +145,17 @@ owner = &ldquo;zhouguoqionghai&rdquo;              # Your GitHub ID
 repo = &ldquo;blog-comments&rdquo;               # The repo to store comments</p>
 </blockquote>
 <p>发布之后，热心网友登录 github 账号之后，就能进行评论。</p>
-<p><img src="/pic/hugo/comment/sign_in_comment.jpg" alt="repository"></p>
+<p><img src="/pic/hugo/comment/sign_in_comment.jpg" alt="sign_in_comment"></p>
+<h1 id="使用-gitment-作为评论系统">使用 gitment 作为评论系统</h1>
+<p>登陆 github 账号，点击个人头像 -&gt; settings -&gt; Developer settings -&gt; OAuth Apps，注册一个 OAuth applications.</p>
+<p>Authorization callback URL 这里填发布博客的域名。</p>
+<p><img src="/pic/hugo/auth/auth.png" alt="repository"></p>
+<p>点击注册，最后会有一个 <code>Client ID</code> 和 <code>Client secrets</code>，这两个值需要填到配置文件里。生成了 Client secrets 需要点击最下边的 update application 才生效。</p>
+<p><img src="/pic/hugo/auth/update_application.png" alt="repository"></p>
+<p>在 config.toml 中配置启用 gitment 作为评论系统。</p>
+<p><img src="/pic/hugo/comment/gitment.png" alt="repository"></p>
+<p>在本地启动预览，使用 gitment 的评论系统会提示 <strong>Error: Comments Not Initialized</strong>.</p>
+<p><img src="/pic/hugo/comment/error.png" alt="repository"></p>
     </div>
 
     
@@ -179,19 +189,29 @@ repo = &ldquo;blog-comments&rdquo;               # The repo to store comments</p
     </footer>
   </article>
         </div>
-        
-
-  
-
-  
-    <script src="https://utteranc.es/client.js"
-            repo="zhouguoqionghai/blog-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2020-11-23 22:47:03 \u002b0800 CST',
+        title: '博客添加评论系统',
+        link: decodeURI(location.href),
+        desc: '',
+        owner: 'zhouguoqionghai',
+        repo: 'blog-comments',
+        oauth: {
+          client_id: 'e15fa37ab877e1513599',
+          client_secret: '7ba7adeb7503e227a1462117871c6e57d32db619'
+        }
+      });
+      gitment.render('comments-gitment');
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
