@@ -2,7 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhouguoqionghai.life/categories/</loc>
+    <lastmod>2020-12-12T16:36:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://zhouguoqionghai.life/</loc>
+    <lastmod>2020-12-12T16:36:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhouguoqionghai.life/categories/git/</loc>
+    <lastmod>2020-12-12T16:36:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhouguoqionghai.life/tags/git-bash/</loc>
+    <lastmod>2020-12-12T16:36:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhouguoqionghai.life/categories/git-server/</loc>
     <lastmod>2020-12-12T16:36:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -16,8 +44,29 @@
   </url>
   
   <url>
+    <loc>http://zhouguoqionghai.life/tags/ssh/</loc>
+    <lastmod>2020-12-12T16:36:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhouguoqionghai.life/tags/</loc>
+    <lastmod>2020-12-12T16:36:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://zhouguoqionghai.life/post/%E4%BD%BF%E7%94%A8git-bash%E5%9C%A8windows%E4%B8%8A%E6%90%AD%E5%BB%BA-git-%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2020-12-12T16:36:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhouguoqionghai.life/categories/github/</loc>
+    <lastmod>2020-11-23T22:47:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -30,7 +79,7 @@
   </url>
   
   <url>
-    <loc>http://zhouguoqionghai.life/tags/</loc>
+    <loc>http://zhouguoqionghai.life/categories/hugo/</loc>
     <lastmod>2020-11-23T22:47:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -51,13 +100,6 @@
   </url>
   
   <url>
-    <loc>http://zhouguoqionghai.life/categories/</loc>
-    <lastmod>2020-11-23T20:35:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>http://zhouguoqionghai.life/categories/even/</loc>
     <lastmod>2020-11-23T20:35:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -66,13 +108,6 @@
   
   <url>
     <loc>http://zhouguoqionghai.life/tags/github-pages/</loc>
-    <lastmod>2020-11-23T20:35:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://zhouguoqionghai.life/categories/hugo/</loc>
     <lastmod>2020-11-23T20:35:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

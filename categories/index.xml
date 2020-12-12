@@ -6,22 +6,49 @@
     <description>Recent content in Categories on coding monster</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 23 Nov 2020 20:35:51 +0800</lastBuildDate><atom:link href="http://zhouguoqionghai.life/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Dec 2020 16:36:46 +0800</lastBuildDate><atom:link href="http://zhouguoqionghai.life/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>even</title>
-      <link>http://zhouguoqionghai.life/categories/even/</link>
-      <pubDate>Mon, 23 Nov 2020 20:35:51 +0800</pubDate>
+      <title>git</title>
+      <link>http://zhouguoqionghai.life/categories/git/</link>
+      <pubDate>Sat, 12 Dec 2020 16:36:46 +0800</pubDate>
       
-      <guid>http://zhouguoqionghai.life/categories/even/</guid>
+      <guid>http://zhouguoqionghai.life/categories/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git server</title>
+      <link>http://zhouguoqionghai.life/categories/git-server/</link>
+      <pubDate>Sat, 12 Dec 2020 16:36:46 +0800</pubDate>
+      
+      <guid>http://zhouguoqionghai.life/categories/git-server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>http://zhouguoqionghai.life/categories/github/</link>
+      <pubDate>Mon, 23 Nov 2020 22:47:03 +0800</pubDate>
+      
+      <guid>http://zhouguoqionghai.life/categories/github/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
       <link>http://zhouguoqionghai.life/categories/hugo/</link>
-      <pubDate>Mon, 23 Nov 2020 20:35:51 +0800</pubDate>
+      <pubDate>Mon, 23 Nov 2020 22:47:03 +0800</pubDate>
       
       <guid>http://zhouguoqionghai.life/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>even</title>
+      <link>http://zhouguoqionghai.life/categories/even/</link>
+      <pubDate>Mon, 23 Nov 2020 20:35:51 +0800</pubDate>
+      
+      <guid>http://zhouguoqionghai.life/categories/even/</guid>
       <description></description>
     </item>
     
