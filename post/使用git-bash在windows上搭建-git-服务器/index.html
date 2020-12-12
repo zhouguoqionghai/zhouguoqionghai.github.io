@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用git Bash在windows上搭建 Git 服务器 - coding monster</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Troy" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.2 with theme even" />
+
+
+<link rel="canonical" href="http://zhouguoqionghai.life/post/%E4%BD%BF%E7%94%A8git-bash%E5%9C%A8windows%E4%B8%8A%E6%90%AD%E5%BB%BA-git-%E6%9C%8D%E5%8A%A1%E5%99%A8/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用git Bash在windows上搭建 Git 服务器" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zhouguoqionghai.life/post/%E4%BD%BF%E7%94%A8git-bash%E5%9C%A8windows%E4%B8%8A%E6%90%AD%E5%BB%BA-git-%E6%9C%8D%E5%8A%A1%E5%99%A8/" />
+<meta property="article:published_time" content="2020-12-12T16:36:46+08:00" />
+<meta property="article:modified_time" content="2020-12-12T16:36:46+08:00" />
+<meta itemprop="name" content="使用git Bash在windows上搭建 Git 服务器">
+<meta itemprop="description" content="">
+<meta itemprop="datePublished" content="2020-12-12T16:36:46+08:00" />
+<meta itemprop="dateModified" content="2020-12-12T16:36:46+08:00" />
+<meta itemprop="wordCount" content="1348">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用git Bash在windows上搭建 Git 服务器"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">coding monster</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">coding monster</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用git Bash在windows上搭建 Git 服务器</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-12-12 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <p>在 windows 上安装 git，都会附带 git bash.</p>
+<h2 id="git-bash-相关路径">git bash 相关路径</h2>
+<p>git bash 是基于 <strong>msys2</strong> 的，在 windows 上任务管理器里可以看到：</p>
+<p><img src="/pic/hugo/gitbash/msys2.jpg" alt="git bash"></p>
+<h3 id="git-bash-的根目录">git bash 的根目录</h3>
+<p><strong>msys2</strong> 本身用来在 windows 上模拟 Linux 类环境。git bash 的<strong>根目录</strong>的实际物理目录是 git 的安装目录，在我的 windows 上，是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">`D:\Program Files\Git`
+</code></pre></td></tr></table>
+</div>
+</div><p>可以在 git bash 里切换到根目录 <code>cd /</code>，然后在当前目录创建个文件来确证。</p>
+<h3 id="git-bash-的用户目录">git bash 的用户目录</h3>
+<p>git bash 的用户目录和 windows 的用户目录保持一致，在系统盘 User 下。在我的 windows 上，用户目录是这个<code>cd ~</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">/c/Users/Administrator
+</code></pre></td></tr></table>
+</div>
+</div><p>同时看到，git bash 里访问 windows 的磁盘 X 下的文件的方式为 <code>/X/file</code></p>
+<h2 id="ssh-服务">ssh 服务</h2>
+<p>ssh 服务需要 sshd 服务器，ssh 客户端来共同完成。一般安装 ssh 服务都会同时安装这两个程序，在 windows 上，分别是ssh.exe 和 sshd.exe.</p>
+<p>尝试在 git bash 下启动 ssh 服务。</p>
+<p>直接启动 <code>sshd</code>，报错：</p>
+<blockquote>
+<p>sshd re-exec requires execution with an absolute path</p>
+</blockquote>
+<p>提示需要使用绝对路径。使用 <code>which sshd</code> 获取绝对路径，使用最对路径启动，报错</p>
+<blockquote>
+<p>sshd: no hostkeys available &ndash; exiting.</p>
+</blockquote>
+<p>提示没有 key 文件，需要使用 key文件来对外标识自己的身份。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -A
+</code></pre></td></tr></table>
+</div>
+</div><p>使用上边命令生成多个加密方式的 key 文件，提示</p>
+<blockquote>
+<p>ssh-keygen: generating new host keys: RSA DSA ECDSA ED25519</p>
+</blockquote>
+<p>此命令会在 <code>/etc/ssh</code> 目录下，生成 8 个文件。</p>
+<p><img src="/pic/hugo/gitbash/open_ssh.png" alt="openssh"></p>
+<p>之后便能正常启动 <code>sshd</code>。多次启动 sshd，还会生成 <code>/etc/ssh/sshd.pid</code> 文件，确保只有一个 <code>sshd</code> 进程实例。</p>
+<h3 id="密码登陆">密码登陆</h3>
+<p>ssh 服务有 <code>~/.ssh/config</code>、<code>/etc/ssh/ssh_config</code> 和 <code>/etc/sshsshd_config</code> 两个配置文件，前两个是客户端配置，最后一个是服务器的配置。</p>
+<p>修改服务器 sshd_config 配置，允许密码登陆。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">PasswordAuthentication yes
+</code></pre></td></tr></table>
+</div>
+</div><p>重启 sshd 服务。</p>
+<p>由于没有 Linux 上的 service 命令来管理 sshd 服务，不过 git bash 一样可以通过 ps 来查看启动的进程，同样适用 kill 来停止。</p>
+<p>正常情况下，便可以使用 ssh 登陆 windows。注意登陆的用户名。默认 gitbash 的用户应该可 windows 的用户一致，如果使用 windows 上是用管理员登陆的，那么用 administrator 登陆即可。</p>
+<p>在 gitbash 里使用 <code>id</code> 可查看当前的用户。</p>
+<blockquote>
+<p>uid=197108(Administrator) gid=197121 groups=197121</p>
+</blockquote>
+<p>在另外一台 Linux 服务器上，可以通过 ssh 客户端登录 windows。</p>
+<p><img src="/pic/hugo/gitbash/sshd_win.png" alt="ssh登录windows"></p>
+<h3 id="git-服务器">git 服务器</h3>
+<p>将 A 机器上 windows 本地的 git 仓库作为 B 机器上某个仓库的远端仓库，进行拉取和推送。</p>
+<p>在 A 机器上启动 sshd 服务器，默认使用 22 号端口。</p>
+<p>A 机器如果在内网，如果想办法从外网能够访问。我这里使用 ssh 端口转发来做。关于 ssh 端口转发，见之前我的一片<a href="https://blog.csdn.net/zhouguoqionghai/article/details/81869554">博客</a>.</p>
+<p><strong>将 B 机器本地的 6666 端口转发到 A 机器的 22 号端口上</strong>。</p>
+<p>在 B 机器上为本地的 git 仓库添加远端仓库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">git remote add origin ssh://administrator@127.0.0.1:6666/D/project/code_project
+</code></pre></td></tr></table>
+</div>
+</div><p>ssh 指定 git 使用的协议。git 一共支持 LOCAL 本地文件系统协议、HTTP 协议、SSH 协议、GIT 协议这 4 种协议。</p>
+<p>administrator 指定用户名。</p>
+<p>127.0.0.1:6666 指定了通信地址。</p>
+<p>/D/project/code_project 指定了远端仓库所在的位置 (即仓库在 A 机器上的位置，这里需要使用 git bash 里识别的位置)。</p>
+<p>同 Linux 上的一样，密码可以通过 passwd 来指定和修改。</p>
+<p>正常情况下，就能正常的进行 pull 和 push 操作了。</p>
+<p><img src="/pic/hugo/gitbash/pull.jpg" alt="pull"></p>
+<p><img src="/pic/hugo/gitbash/push.jpg" alt="push"></p>
+<p>使用密码登陆，这样每次 push 和 pull 时，还需要输入密码，可以更换为 ssh key，省掉密码。</p>
+<h3 id="git-仓库免密">git 仓库免密</h3>
+<p>使用 <code>ssh-key</code> 制作没有密码的 key（key 可以本身是可以带有密码的，ssh-keygen -A 一路 enter 就没有密码）。</p>
+<p>跟在 Linux 上一样，在 A 机器上的用户目录下创建 ~/.ssh/authorized_keys 文件，里边复制进去公钥的内容。</p>
+<p>完毕之后，重启 A 上的 sshd 服务。</p>
+<p>B 机器上我有多个 key，在 git 操作的时候没有可以指定 key 参数的选项（也许有我不知道的方法？），所以需要在客户端使用的 config 文件，指定特定的服务器使用特定的 key 文件。</p>
+<p>在用户目录下的 config 文件 <code>~/.ssh/config</code> 添加一下内容，指定 ssh 服务器地址 127.0.0.1:6666 使用的 key 文件，同时定义一个别名。</p>
+<blockquote>
+<p>Host workrep
+HostName 127.0.0.1
+User administrator
+Port 6666
+IdentityFile &ldquo;D:\project\code_project\keys\king_nopass&rdquo;</p>
+</blockquote>
+<p>在 B 机器上修改远端仓库的地址，使用上边定义的<strong>别名</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">git remote add origin ssh://workrep/D/project/code_project
+</code></pre></td></tr></table>
+</div>
+</div><p>在 B 机器上，往 A 上推送。</p>
+<p><img src="/pic/hugo/gitbash/free_passwd.jpg" alt="free_pass"></p>
+    </div>
+
+    
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">
+            <span class="next-text nav-default">博客添加评论系统</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="zhouguoqionghai/blog-comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://stackoverflow.com/users/10287728/kingkong" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/zhouguoqionghai" class="iconfont icon-github" title="github"></a>
+  <a href="http://zhouguoqionghai.life/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Troy</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
