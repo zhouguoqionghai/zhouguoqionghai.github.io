@@ -181,24 +181,24 @@ error: no operation specified (use -h for help)</p>
 </div>
 </div><p>提示</p>
 <blockquote>
-<p>:: Synchronizing package databases&hellip;
-mingw32                                                                                                     760.3 KiB  2.40 MiB/s 00:00 [###################################################################################] 100%
-mingw32.sig                                                                                                 438.0   B   428 KiB/s 00:00 [###################################################################################] 100%
-warning: Public keyring not found; have you run <strong>&lsquo;pacman-key &ndash;init&rsquo;</strong>?
-error: mingw32: key &ldquo;4A6129F4E4B84AE46ED7F635628F528CF3053E04&rdquo; is unknown
+<p>:: Synchronizing package databases&hellip;</p>
+<p>mingw32                                                                                                     760.3 KiB  2.40 MiB/s 00:00 [###################################################################################] 100%</p>
+<p>mingw32.sig                                                                                                 438.0   B   428 KiB/s 00:00 [###################################################################################] 100%</p>
+<p>warning: Public keyring not found; have you run <strong>&lsquo;pacman-key &ndash;init&rsquo;</strong>?</p>
+<p>error: mingw32: key &ldquo;4A6129F4E4B84AE46ED7F635628F528CF3053E04&rdquo; is unknown
 error: keyring is not writable
 error: failed to update mingw32 (invalid or corrupted database (PGP signature))
-mingw64                                                                                                     761.9 KiB  2.21 MiB/s 00:00 [###################################################################################] 100%
-mingw64.sig                                                                                                 438.0   B  0.00   B/s 00:00 [###################################################################################] 100%
+mingw64                                                                                                     761.9 KiB  2.21 MiB/s 00:00 [###################################################################################] 100%</p>
+<p>mingw64.sig                                                                                                 438.0   B  0.00   B/s 00:00 [###################################################################################] 100%
 error: mingw64: key &ldquo;4A6129F4E4B84AE46ED7F635628F528CF3053E04&rdquo; is unknown
 error: keyring is not writable
-error: failed to update mingw64 (invalid or corrupted database (PGP signature))
-msys                                                                                                        273.5 KiB  1581 KiB/s 00:00 [###################################################################################] 100%
-msys.sig                                                                                                    438.0   B   428 KiB/s 00:00 [###################################################################################] 100%
-error: msys: key &ldquo;4A6129F4E4B84AE46ED7F635628F528CF3053E04&rdquo; is unknown
-error: keyring is not writable
-error: failed to update msys (invalid or corrupted database (PGP signature))
-error: failed to synchronize all databases</p>
+error: failed to update mingw64 (invalid or corrupted database (PGP signature))</p>
+<p>msys                                                                                                        273.5 KiB  1581 KiB/s 00:00 [###################################################################################] 100%</p>
+<p>msys.sig                                                                                                    438.0   B   428 KiB/s 00:00 [###################################################################################] 100%</p>
+<p>error: msys: key &ldquo;4A6129F4E4B84AE46ED7F635628F528CF3053E04&rdquo; is unknown</p>
+<p>error: keyring is not writable</p>
+<p>error: failed to update msys (invalid or corrupted database (PGP signature))</p>
+<p>error: failed to synchronize all databases</p>
 </blockquote>
 <p>按提示，先进行初始化。</p>
 <div class="highlight"><div class="chroma">
@@ -220,8 +220,8 @@ error: failed to synchronize all databases</p>
 </div>
 </div><p>会卡主：</p>
 <blockquote>
-<p>error: mingw32: key &ldquo;4A6129F4E4B84AE46ED7F635628F528CF3053E04&rdquo; is unknown
-:: Import PGP key 4A6129F4E4B84AE46ED7F635628F528CF3053E04? [Y/n] y</p>
+<p>error: mingw32: key &ldquo;4A6129F4E4B84AE46ED7F635628F528CF3053E04&rdquo; is unknown</p>
+<p>:: Import PGP key 4A6129F4E4B84AE46ED7F635628F528CF3053E04? [Y/n] y</p>
 </blockquote>
 <p>ctrl + c 终止之后，使用 pacman-key 更新 key.</p>
 <div class="highlight"><div class="chroma">
@@ -358,8 +358,8 @@ Try the following to fix the databse entry for the pacman package.</p>
 </div>
 </div><p>为了方便，可以在使用别名机制，将 <code>ipython</code> 定义为 <code>winpty ipython</code> 的别名，并且持久化到 /etc/bash.bashrc 文件当中。</p>
 <blockquote>
-<p># 使用 winpty 来启动 ipython
-alias ipython=&ldquo;winpty ipython&rdquo;</p>
+<p># 使用 winpty 来启动 ipython</p>
+<p>alias ipython=&ldquo;winpty ipython&rdquo;</p>
 </blockquote>
 <h3 id="鼠标右键添加-msys2">鼠标右键添加 msys2</h3>
 <p>关于鼠标右键点击文件夹空白处添加快捷方式参见我之前的<a href="https://blog.csdn.net/zhouguoqionghai/article/details/105544925">博客</a>, 默认从 windows 菜单启动 msys2 时，msys2 中的 shell 环境的当前目录是用户目录，如果想要像 git bash 在鼠标右键中启动，shell 环境是当前文件夹的目录，command 项的值是 <code>D:\msys64\msys2_shell.cmd -here</code>, 即通过 <code>msys2_shell.cmd</code> 脚本来间接启动  <code>msys2.exe</code>.</p>
