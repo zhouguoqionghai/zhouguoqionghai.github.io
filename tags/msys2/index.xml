@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>msys2 on coding monster</title>
+    <link>http://zhouguoqionghai.life/tags/msys2/</link>
+    <description>Recent content in msys2 on coding monster</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Dec 2020 19:01:37 +0800</lastBuildDate><atom:link href="http://zhouguoqionghai.life/tags/msys2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Bash 下 Pacman 环境配置</title>
+      <link>http://zhouguoqionghai.life/post/git-bash-%E4%B8%8B-pacman-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sun, 13 Dec 2020 19:01:37 +0800</pubDate>
+      
+      <guid>http://zhouguoqionghai.life/post/git-bash-%E4%B8%8B-pacman-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

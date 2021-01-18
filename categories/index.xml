@@ -6,11 +6,20 @@
     <description>Recent content in Categories on coding monster</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 12 Dec 2020 16:36:46 +0800</lastBuildDate><atom:link href="http://zhouguoqionghai.life/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Jan 2021 18:40:46 +0800</lastBuildDate><atom:link href="http://zhouguoqionghai.life/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>http://zhouguoqionghai.life/categories/linux/</link>
+      <pubDate>Fri, 15 Jan 2021 18:40:46 +0800</pubDate>
+      
+      <guid>http://zhouguoqionghai.life/categories/linux/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>git</title>
       <link>http://zhouguoqionghai.life/categories/git/</link>
-      <pubDate>Sat, 12 Dec 2020 16:36:46 +0800</pubDate>
+      <pubDate>Sun, 13 Dec 2020 19:01:37 +0800</pubDate>
       
       <guid>http://zhouguoqionghai.life/categories/git/</guid>
       <description></description>

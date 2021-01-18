@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>进程内存分布 - coding monster</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Troy" /><meta name="description" content="" /><meta name="keywords" content="malloc, program break" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.2 with theme even" />
+
+
+<link rel="canonical" href="http://zhouguoqionghai.life/post/%E8%BF%9B%E7%A8%8B%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="进程内存分布" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zhouguoqionghai.life/post/%E8%BF%9B%E7%A8%8B%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83/" />
+<meta property="article:published_time" content="2021-01-15T18:40:46+08:00" />
+<meta property="article:modified_time" content="2021-01-15T18:40:46+08:00" />
+<meta itemprop="name" content="进程内存分布">
+<meta itemprop="description" content="">
+<meta itemprop="datePublished" content="2021-01-15T18:40:46+08:00" />
+<meta itemprop="dateModified" content="2021-01-15T18:40:46+08:00" />
+<meta itemprop="wordCount" content="1063">
+
+
+
+<meta itemprop="keywords" content="Linux,maps," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="进程内存分布"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">coding monster</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">coding monster</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">进程内存分布</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <h3 id="进程内存分布">进程内存分布</h3>
+<p>典型的 <code>Linux</code> 进程内存分布图，图片<a href="https://manybutfinite.com/post/anatomy-of-a-program-in-memory/">来自这里</a>：</p>
+<p><img src="/pic/hugo/memory_location/linuxFlexibleAddressSpaceLayout.png" alt="Linux进程的内存布局"></p>
+<p>这张图中有映射段的位置，但是还有一个重要的部分的缺失，就是运行时的参数和环境变量，在 Linux/Unix 系统编程手册这本书第 6 章讲进程的内存分配里有给:</p>
+<p><img src="/pic/hugo/memory_location/argc_environ.png" alt="环境和参数的位置"></p>
+<h3 id="malloc-内存分配在映射段"><code>malloc</code> 内存分配在映射段</h3>
+<p>当 <code>malloc</code> 申请分配的内存过大（<code>128K</code>以上），内部将使用 <code>mmap</code> 而不是 <code>brk</code> 来分配内存。</p>
+<p>测试代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;program break:%p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sbrk</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+    <span class="kt">char</span><span class="o">*</span> <span class="n">ptr</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ptr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">200</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;malloc:%p program_break_%d:%p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ptr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="n">sbrk</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;stack:%p %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ptr</span><span class="p">,</span> <span class="n">ptr</span><span class="p">);</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出如下图：</p>
+<p><img src="/pic/hugo/memory_location/code_output.png" alt="malloc 内存分配结果"></p>
+<p>显而易见的几点：</p>
+<ul>
+<li>程序 <code>program break</code> 的位置没变，说明分配的内存不在堆上；而且 <code>malloc</code> 分配的地址与 <code>program break</code> 的地址差异巨大，应该在不同的区。</li>
+<li>不在堆上，而且离栈相对较近，且此时 <code>malloc</code> 分配的内存在栈的下方。</li>
+</ul>
+<p>查看 <code>/proc/pid/maps</code> 目录下，获取动态库的映射地址。</p>
+<p><img src="/pic/hugo/memory_location/maps.png" alt=""></p>
+<p>关于 maps 里<a href="https://unix.stackexchange.com/questions/226283/shared-library-mappings-in-proc-pid-maps">同一个动态库映射多次的原因的解释看这里。</a></p>
+<p>用 python 快速的给分配出的内存地址和这里的 maps 的动态库地址作个排序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e4ad000&#39;</span><span class="p">,</span> <span class="s2">&#34;/usr/lib64/libc-2.28.so&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e666000&#39;</span><span class="p">,</span> <span class="s2">&#34;/usr/lib64/libc-2.28.so&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e865000&#39;</span><span class="p">,</span> <span class="s2">&#34;/usr/lib64/libc-2.28.so&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e869000&#39;</span><span class="p">,</span> <span class="s2">&#34;/usr/lib64/libc-2.28.so&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e86f000&#39;</span><span class="p">,</span> <span class="s2">&#34;/usr/lib64/ld-2.28.so&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423ea97000&#39;</span><span class="p">,</span> <span class="s2">&#34;/usr/lib64/ld-2.28.so&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423ea98000&#39;</span><span class="p">,</span> <span class="s2">&#34;/usr/lib64/ld-2.28.so&#34;</span><span class="p">)]</span> <span class="c1">#动态库的地址</span>
+
+
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423ea4c010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_0:0x2482000&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423ea19010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_1:0x2482000&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e9e6010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_2:0x2482000&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e9b3010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_3:0x2482000&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e980010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_4:0x2482000&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e94d010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_5:0x2482000&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e91a010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_6:0x2482000&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e8e7010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_7:0x2482000&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e8b4010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_8:0x2482000&#34;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;0x7f423e47a010&#39;</span><span class="p">,</span> <span class="s2">&#34;program_break_9:0x2482000&#34;</span><span class="p">)]</span> <span class="c1">#malloc 内存分配的地址</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">c</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">base</span> <span class="o">=</span> <span class="mi">16</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>地址升序排列：</p>
+<p><img src="/pic/hugo/memory_location/sort.png" alt=""></p>
+<p>可以看到 <code>malloc</code> 分配的内存区域与动态库的地址是交织在一起的。<strong>Linux/Unix 系统编程手册 49.7 章节有描述</strong>：</p>
+<blockquote>
+<p>glibc 中的 malloc()实现使用 MAP_PRIVATE 匿名映射来分配大小大于 MMAP_
+THRESHOLD 字节的内存块；MMAP_THRESHOLD 在默认情况下是 128 kB</p>
+</blockquote>
+<p>符合这里分配 <code>200k</code> 时，直接将内存分配在动态区。</p>
+<h3 id="malloc-内存分配在堆上">malloc 内存分配在堆上</h3>
+<p>如果分配的内存是100k(100 * 1024)，程序的输出如下，可以看到 program break 的位置有变化，说明是在堆上分配的内存。</p>
+<blockquote>
+<p>program break:0x663000
+malloc:0x642900 program_break_0:0x663000
+malloc:0x65b910 program_break_1:0x695000
+malloc:0x674920 program_break_2:0x695000
+malloc:0x68d930 program_break_3:0x6c7000
+malloc:0x6a6940 program_break_4:0x6c7000
+malloc:0x6bf950 program_break_5:0x6f9000
+malloc:0x6d8960 program_break_6:0x6f9000
+malloc:0x6f1970 program_break_7:0x72b000
+malloc:0x70a980 program_break_8:0x72b000
+malloc:0x723990 program_break_9:0x75d000
+stack:0x7fff79915ac0 0x7fff79915ac0</p>
+</blockquote>
+<p><strong>两次分配内存之间的地址差值是 102416（0x65b910 - 0x642900 = 102416 = 100k + 16），100k 返回给 malloc 的调用者，多余的 16 字节用来保存长度相关信息。</strong></p>
+<h3 id="总结">总结</h3>
+<ul>
+<li>当调用者请求的内存超过临界值，<code>malloc</code> 分配的内存是进程的映射区，和动态库的内存占用相同区域；小于临界值时，分配的内存才是在堆上。</li>
+<li>当<code>malloc</code>内存分配在堆上时，实际会多分配几个字节（位于实际返回给调用者的地址之前），用来记录分配的内存的长度；这样 <code>free</code> 才能正确的释放内存。</li>
+<li>即便返回的内存是在堆上，<code>malloc</code> 也可能并未调用 <code>brk</code> 来改变<code>program break</code> 的位置：其一是因为<code>program break</code>下边本来就有部分未使用的空闲内存（<code>malloc</code> 调用 <code>brk</code> 会超额分配内存，多余的至于堆顶）；其二在于 <code>free</code> 所释放的内存保存在空闲内存列表里，<code>malloc</code> 会首先检查这个列表中是否有合适的内存块（2种策略 first-fit 和 best-fit），之后才会去调用 <code>brk</code> 分配更多的堆内存。</li>
+</ul>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          <a href="/tags/maps/">maps</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/git-bash-%E4%B8%8B-pacman-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+            <span class="next-text nav-default">Git Bash 下 Pacman 环境配置</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="zhouguoqionghai/blog-comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://stackoverflow.com/users/10287728/kingkong" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/zhouguoqionghai" class="iconfont icon-github" title="github"></a>
+  <a href="http://zhouguoqionghai.life/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Troy</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
