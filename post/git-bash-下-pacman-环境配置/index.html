@@ -49,7 +49,7 @@
 <meta itemprop="description" content="">
 <meta itemprop="datePublished" content="2020-12-13T19:01:37+08:00" />
 <meta itemprop="dateModified" content="2020-12-13T19:01:37+08:00" />
-<meta itemprop="wordCount" content="1399">
+<meta itemprop="wordCount" content="1437">
 
 
 
@@ -371,6 +371,13 @@ Try the following to fix the databse entry for the pacman package.</p>
 <p>当所有的这些都完成之后，就能愉快的使用 <code>pacman</code> 包管理器了，再也不用单独去<a href="https://git-scm.com/">这里</a> 下载 git 了。</p>
 <h3 id="用户目录的小坑">用户目录的小坑</h3>
 <p>msys2 会自带 home 目录，在安装目录下的用户 <code>home</code>目录： <code>D:\msys64\home</code>，而不像 git bash 使用的 <code>home</code> 目录，是共用 windows 的 <code>home</code>目录，在系统盘下<code>C:\Users\administrator</code>, 所以之前在 <code>git bash</code> 的用户目录下<code>.ssh</code>目录中的 <code>config</code> 和 <code>authorized_keys</code> 文件，都需要从 <code>C:\Users\Administrator\.ssh</code> 迁移到<code>D:\msys64\home\Administrator\.ssh</code> 下。</p>
+<h3 id="stdout-is-not-a-tty-问题">stdout is not a tty 问题</h3>
+<p>在 <code>msys2</code> 的 <code>bash</code> 当中，如果遇到</p>
+<blockquote>
+<p>stdout is not a tty</p>
+</blockquote>
+<p>问题，把命令后缀的 .exe 带上即可。</p>
+<p><img src="/pic/hugo/msys2/std_out_is_not_tty.png" alt="stdout is not a tty 问题"></p>
     </div>
 
     
