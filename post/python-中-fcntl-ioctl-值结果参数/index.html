@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python 中 fcntl, ioctl 值结果参数 - coding monster</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Troy" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.2 with theme even" />
+
+
+<link rel="canonical" href="http://zhouguoqionghai.life/post/python-%E4%B8%AD-fcntl-ioctl-%E5%80%BC%E7%BB%93%E6%9E%9C%E5%8F%82%E6%95%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python 中 fcntl, ioctl 值结果参数" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zhouguoqionghai.life/post/python-%E4%B8%AD-fcntl-ioctl-%E5%80%BC%E7%BB%93%E6%9E%9C%E5%8F%82%E6%95%B0/" />
+<meta property="article:published_time" content="2021-02-19T16:08:09+08:00" />
+<meta property="article:modified_time" content="2021-02-19T16:08:09+08:00" />
+<meta itemprop="name" content="Python 中 fcntl, ioctl 值结果参数">
+<meta itemprop="description" content="">
+<meta itemprop="datePublished" content="2021-02-19T16:08:09+08:00" />
+<meta itemprop="dateModified" content="2021-02-19T16:08:09+08:00" />
+<meta itemprop="wordCount" content="1972">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python 中 fcntl, ioctl 值结果参数"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">coding monster</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">coding monster</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python 中 fcntl, ioctl 值结果参数</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-02-19 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <p>python 标准库中包含一些 Linux 系列的<a href="https://docs.python.org/3/library/unix.html#unix-specific-services">专有服务</a> 模块，<code>fcntl</code> 就是其中一个。本文讨论的 <code>fcntl</code> 和 <code>ioctl</code> 的 <code>python</code> 包装函数都包含在这个模块当中。</p>
+<h3 id="fcntl-获取操作"><code>fcntl</code> 获取操作</h3>
+<p><code>fcntl</code> 的函数 C 原型如下，《Linux/Unix系统编程手册》5.2 节有介绍。<code>fcntl</code> 对于大多数操作来说，从返回值中就能获取结果；只有少部分需要<strong>值结果参数</strong>来完成功能。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">fcntl</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cmd</span><span class="p">,</span> <span class="p">...</span> <span class="cm">/* arg */</span> <span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>python</code> 原型如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"> <span class="n">fcntl</span><span class="o">.</span><span class="n">fcntl</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">arg</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过 <strong>值结果参数</strong> 来获取，在参数的处理上，就会有些麻烦。</p>
+<p>在<code>python</code>里，传入系统 <code>api</code> 或者 <code>C</code> 库的特有数据结构指针，都是通过 <code>struct</code> 模块来打包成字节序列。这只解决了传入参数的问题，对于值结果参数，还有传出结果的问题。</p>
+<p>由于 <code>python</code> 中的 <code>bytes</code> 类型是不可变类型，<code>python</code> 当中无法像再 C 中一样，给这些包装的 <code>C</code> 函数传入一个保存结果的缓存。所以 <strong><code>fcntl.fcntl</code> 通过返回字节序列值</strong>解决指针传出结果的问题，这也是 <code>python</code> 一贯的做法，比如 <code>read</code> 函数返回值就是读取的内容。而在 <code>C</code> 当中，需要传入一个接收内容的缓存，函数返回值是实际接收的字节数。</p>
+<p>比如 <code>F_GETLK</code> 获取一个文件上的锁信息操作，在 <code>C</code> 里这个操作需要传入一个缓存指针作为入参和出参的功能（即值结果参数）。</p>
+<p><code>python</code> 中的操作按照图中画笔标注的序号加以说明。</p>
+<p><img src="/pic/hugo/python/fcntl/fcntl.png" alt="fcntl"></p>
+<ol>
+<li>
+<p>获取文件 <code>f</code> 上的锁信息，此时 <code>fcntl.fcntl</code> 返回的就是一个字节序列，<code>struct.unpack</code> 对返回的字节序列 <code>bytes</code> 类型对象解包之后第一个值是 2(<code>F_UNLCK</code>)，表示可以加锁。注：<code>F_GETLK</code> 准确的来说是获取是否可以对文件进行加锁。</p>
+</li>
+<li>
+<p>对文件 <code>f</code> 进行加锁，此时 <code>fcntl.fcntl</code> 返回的依然是一个字节序列，是传入的参数 <code>arg</code> 的原样返回。此时<strong>使用 <code>shell</code> 命令 <code>lslocks</code> 可以看到 <code>lock.txt</code> 已经被上锁</strong>。</p>
+</li>
+<li>
+<p>左边另外一个 <code>ipython</code> 进程当中，时间表明了先后顺序。获取 <code>f</code> 上的文件锁信息，无论入参是 <code>F_WRLCK</code> 还是 <code>F_RDLCK</code>, 返回的都是1（<code>F_WRLCK</code>）,  表明当前的文件区域上有写锁，且返回值的进程 <code>id</code> 字段标注了对该文件上锁的进程。</p>
+</li>
+<li>
+<p><code>C</code> 中的记录锁结构如下，该结构在 C 里的大小是 32 个字节，<code>struct.pack</code> 没有考虑最后一个字段的填充问题，返回的是 28.</p>
+<pre><code>      struct flock {
+          ...
+          short l_type;    /* Type of lock: F_RDLCK,
+                              F_WRLCK, F_UNLCK */
+          short l_whence;  /* How to interpret l_start:
+                              SEEK_SET, SEEK_CUR, SEEK_END */
+          off_t l_start;   /* Starting offset for lock */
+          off_t l_len;     /* Number of bytes to lock */
+          pid_t l_pid;     /* PID of process blocking our lock
+                              (set by F_GETLK and F_OFD_GETLK) */
+          ...
+      };
+</code></pre>
+</li>
+</ol>
+<h3 id="ioctl-获取操作">ioctl 获取操作</h3>
+<p><code>ioctl</code> 的函数 C 原型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">ioctl</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">request</span><span class="p">,</span> <span class="p">...);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>python</code> <a href="https://docs.python.org/3/library/fcntl.html">原型</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">fcntl</span><span class="o">.</span><span class="n">ioctl</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">arg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mutate_flag</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>对于大部分操作，<code>ioctl</code> 都是采用<strong>值结果参数</strong> 的形式来使用，<code>python</code> 文档如下</p>
+<blockquote>
+<p>This function is identical to the <a href="https://docs.python.org/3/library/fcntl.html#fcntl.fcntl"><code>fcntl()</code></a> function, except that the argument handling is even more complicated.</p>
+<p>The <em>request</em> parameter is limited to values that can fit in 32-bits. Additional constants of interest for use as the <em>request</em> argument can be found in the <a href="https://docs.python.org/3/library/termios.html#module-termios"><code>termios</code></a> module, under the same names as used in the relevant C header files.</p>
+</blockquote>
+<p>此处提到相关的操作的枚举常量都定义在 <code>temios</code> 模块当中，名字和 <code>C</code> 中的一致。</p>
+<blockquote>
+<p>The parameter <em>arg</em> can be one of an integer, an object supporting the read-only buffer interface (like <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>) or an object supporting the read-write buffer interface (like <a href="https://docs.python.org/3/library/stdtypes.html#bytearray"><code>bytearray</code></a>).</p>
+</blockquote>
+<p>这里提到 <code>arg</code> 可以是一个不可变对象，比如 <code>bytes</code> ；也可以是一个可变对象，比如 <code>bytearray</code>.</p>
+<blockquote>
+<p>In all but the last case, behaviour is as for the <a href="https://docs.python.org/3/library/fcntl.html#fcntl.fcntl"><code>fcntl()</code></a> function.</p>
+</blockquote>
+<p>当 <code>arg</code> 是一个可变对象时，此时的行为与 <code>fcntl.fcntl</code> 才有区别。</p>
+<blockquote>
+<p>If a mutable buffer is passed, then the behaviour is determined by the value of the <em>mutate_flag</em> parameter.</p>
+<p>If it is false, the buffer’s mutability is ignored and behaviour is as for a read-only buffer, except that the 1024 byte limit mentioned above is avoided – so long as the buffer you pass is at least as long as what the operating system wants to put there, things should work.</p>
+<p>If <em>mutate_flag</em> is true (the default), then the buffer is (in effect) passed to the underlying <a href="https://docs.python.org/3/library/fcntl.html#fcntl.ioctl"><code>ioctl()</code></a> system call, the latter’s return code is passed back to the calling Python, and the buffer’s new contents reflect the action of the <a href="https://docs.python.org/3/library/fcntl.html#fcntl.ioctl"><code>ioctl()</code></a>.  This is a slight simplification, because if the supplied buffer is less than 1024 bytes long it is first copied into a static buffer 1024 bytes long which is then passed to <a href="https://docs.python.org/3/library/fcntl.html#fcntl.ioctl"><code>ioctl()</code></a> and copied back into the supplied buffer.</p>
+</blockquote>
+<p>即使 <code>arg</code> 传入的是一个可变对象，还需要依据 <code>mutate_flag</code> 是否为真。若为真，结果直接写入 <code>arg</code> 当中，此时的行为同原始的 <code>C</code> 接口中的<strong>值结果参数</strong> 一致；若为假，将忽略 <code>arg</code> 的可变性，将 <code>arg</code> 当做不可变对象，此时的结果同 <code>fcntl.fcntl</code> 一样，通过函数的返回值返回。</p>
+<p>下边用获取 <code>tcp</code> 内核缓冲区中的未读取字节数为例来说明。</p>
+<p><img src="/pic/hugo/python/fcntl/ioctl.png" alt="ioctl"></p>
+<p>首先看右边的 <code>ipython</code> 创建侦听 <code>socket</code>, 连接建立之后写入 <code>0x1234</code> 个字节。</p>
+<p>回到左端，在 <code>C</code> 中，<code>FIONREAD</code> 操作用来获取内核缓冲区的字节长度，<strong>值结果参数</strong> 需要传入的是一个 <code>int</code> 指针类型，相当于一块 4 个字节长度缓存用来接收结果。</p>
+<ol>
+<li>
+<p>这里使用<code>fcntl.ioctl</code> 文档中给出的示例，使用一个 <code>array.array</code> 类型的可变对象作为<strong>值结果参数</strong>，这里故意让传入的  <code>array.array</code> 对象有 2 个元素，相当于传入的接收结果的缓冲区有 8 个字节可用，最终返回值只使用了前 4 个字节 &ndash; 只有第一个元素被修改，从 255 变为 4660 表明内核缓冲区中还有 4660 个字节的内容。</p>
+</li>
+<li>
+<p>使用 4 个字节的 <code>bytearray</code> 对象作为接收结果的缓冲区，调用结束，<code>bytearray</code> 对象 <code>byte_buf</code> 的内容 <code>b'4\x12\x00\x00'</code> 就是小端模式的 <code>0x1234</code>(字符<code>4</code> 的 ASCII 码就是 <code>0x34</code>). 当使用可变对象时，<code>fcntl.ioctl</code> 正常返回值都是 0， 语义上也和 <code>C </code> 的一致。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&#34;i&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;4</span><span class="se">\x12\x00\x00</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1">#(4660,)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>当传入的是可变对象，但是 <code>mutate_flag</code> 参数是 <code>False</code> 时，此时可变对象被当作不可变对象使用，结果通过 <code>fcntl.ioctl</code> 函数的返回值来表达。</p>
+</li>
+<li>
+<p>传入不可变对象，无论是 <code>str</code> 还是 <code>byte</code>, 都是通过返回值来表达结果。当然不可变对象的长度必须契合 <code>C</code> 结构缓冲区的长度，因为返回值的长度和传入的不可变对象长度一致，过短将会发生截断。</p>
+<p><img src="/pic/hugo/python/fcntl/too_short.png" alt="缓冲区过短"></p>
+</li>
+</ol>
+<h4 id="总结"><strong>总结</strong></h4>
+<ul>
+<li>
+<p>使用 <code>array.array</code> 的好处显而易见，元素带有解释的类型；不用像 <code>bytearray</code> 那样需要再转换成整数。</p>
+</li>
+<li>
+<p>无论使用可变对象还是不可变对象，都需要和 <code>C</code> 结构中的<strong>值结果参数</strong>所代表的缓冲区的长度一致，否则会发生截断。</p>
+</li>
+</ul>
+    </div>
+
+    
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/%E8%BF%9B%E7%A8%8B%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83/">
+            <span class="next-text nav-default">进程内存分布</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="zhouguoqionghai/blog-comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://stackoverflow.com/users/10287728/kingkong" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/zhouguoqionghai" class="iconfont icon-github" title="github"></a>
+  <a href="http://zhouguoqionghai.life/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Troy</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
